@@ -13,6 +13,8 @@ export interface AchievementCardProps {
   title: string;
   time: string;
   desc?: string;
+  temp?: string;
+  hum?: string;
 }
 
 export function AchievementCard({
@@ -20,6 +22,8 @@ export function AchievementCard({
   title,
   time,
   desc,
+  temp,
+  hum,
 }: AchievementCardProps) {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -96,11 +100,17 @@ export function AchievementCard({
       ) : (
         <>
           <div className="flex flex-col space-y-1.5 px-6 pt-6 pb-2">
-            <p className="text-sm text-gray-500 mb-2">
+            <p className="text-sm text-gray-500">
               {" "}
               {new Date(time).toLocaleString()}
             </p>
-            <h3 className="text-2xl font-semibold leading-none tracking-tight">
+            {(temp || hum) && (
+              <div className="text-gray-500 text-sm flex items-center gap-1">
+                {temp && <p className="text-gray-500">Temperature: {temp}°C</p>}
+                {hum && <p className="text-gray-500">Humidity: {hum}%</p>}
+              </div>
+            )}
+            <h3 className="mt-2 text-2xl font-semibold leading-none tracking-tight">
               {title}
             </h3>
           </div>

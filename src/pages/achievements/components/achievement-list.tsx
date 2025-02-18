@@ -46,6 +46,8 @@ export function AchievementList() {
               title={achievement.title}
               time={achievement.time}
               desc={achievement.desc}
+              temp={achievement.temp}
+              hum={achievement.hum}
             />
           ))}
         </div>

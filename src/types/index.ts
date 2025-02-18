@@ -3,4 +3,6 @@ export interface AchievementItem {
   title: string;
   desc?: string;
   time: string;
+  temp?: string;
+  hum?: string;
 }

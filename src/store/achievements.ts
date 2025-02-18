@@ -10,6 +10,7 @@ import {
   updateAchievement,
 } from "@/apis/achievements";
 import { randomId } from "@/utils/rand";
+import { getHumidity, getTemperature } from "@/apis/environment";
 
 interface AchievementState {
   search?: string;
@@ -53,6 +54,16 @@ export const achievementsApi = createApi({
           ...newAchievement,
           id,
         } as AchievementItem;
+
+        const [humidity, temperature] = await Promise.allSettled([
+          getHumidity(finalAchievement.time),
+          getTemperature(finalAchievement.time),
+        ]);
+
+        finalAchievement.hum =
+          humidity.status === "fulfilled" ? humidity.value : undefined;
+        finalAchievement.temp =
+          temperature.status === "fulfilled" ? temperature.value : undefined;
 
         await saveNewAchievement(finalAchievement);
 
