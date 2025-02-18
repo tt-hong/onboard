@@ -22,6 +22,8 @@ export const getAchievements = async ({
 
   let achievements = getRawAchievements();
 
+  achievements = achievements.reverse();
+
   if (search) {
     achievements = achievements.filter((a) =>
       a.title.toLowerCase().includes(search.toLowerCase())
