@@ -1,3 +1,18 @@
 /* stylelint-disable */
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #3490dc;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #ffed4a;
+  --color-secondary-foreground: #000000;
+  --color-danger: #e3342f;
+  --color-danger-foreground: #ffffff;
+  --color-base: #131313;
+}
 /* stylelint-enable */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-base);
+}
